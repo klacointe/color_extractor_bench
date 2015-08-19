@@ -131,9 +131,11 @@ palette = yaml.load(open(args['palette'], 'r'))
 colors = []
 for color in extracted_colors:
     hx = rgb_to_hex(color['color'][0], color['color'][1], color['color'][2])
+    closest = closest_color(hx, palette)
     c = dict({
-        'near': closest_color(hx, palette),
+        'near': closest,
         'exact': hx,
+        'name': palette[closest.replace('#', '')],
         'percent': color['percent']
     })
     colors.append(c)
