@@ -1,0 +1,9 @@
+generate: clean
+	for file in fixtures/*; \
+	do \
+		echo $$file; \
+		python opencv_k_means.py -i $$file -c 7 -p colors.yaml; \
+	done
+
+clean:
+	rm -rf output/*
